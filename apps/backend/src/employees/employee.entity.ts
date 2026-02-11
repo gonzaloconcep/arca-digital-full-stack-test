@@ -31,19 +31,19 @@ export class Employee {
   @Column({ unique: true })
   email: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   firstName: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   lastName: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   nif: string | null;
 
   @Column({ type: 'date', nullable: true })
   birthDate: Date | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   pensionPlanId: string | null;
 
   @ManyToOne(() => PensionPlan, { nullable: true })

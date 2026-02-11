@@ -112,7 +112,7 @@ export const getEmployee = async (
 
 **Requisitos técnicos**:
 - Implementar `POST /payroll-sync/:companyId`
-- Llamar a mock API: `GET http://localhost:3002/api/employees?companyId=xxx`
+- Llamar a mock API: `GET http://localhost:3100/api/employees?companyId=xxx`
 - **Implementar retry con exponential backoff (CÓDIGO PROPIO, no librerías)**:
   - Reintentar en: timeout, 500, 502, 503, 504
   - Delays: 1s, 2s, 4s (máximo 3 intentos)
@@ -133,7 +133,7 @@ export const getEmployee = async (
 ```
 
 **Criterios de aceptación**:
-- [ ] Mock server corriendo en `:3002` (`npm run dev:mock`)
+- [ ] Mock server corriendo en `:3100` (`npm run dev:mock`)
 - [ ] `POST /payroll-sync/:companyId` dispara sincronización
 - [ ] Retry con backoff implementado (1s, 2s, 4s)
 - [ ] Maneja correctamente timeout, 500, datos inválidos
@@ -291,7 +291,7 @@ npm run dev
 # 3. Verificar que todo funciona
 # - Frontend: http://localhost:3001
 # - Backend: http://localhost:3000/api/docs
-# - Mock API: http://localhost:3002/health
+# - Mock Payroll API: http://localhost:3100/health
 
 # 4. Tests
 npm run test

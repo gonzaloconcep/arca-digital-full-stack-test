@@ -10,9 +10,17 @@ dotenv.config({ path: path.resolve(__dirname, '../../../../.env') });
 
 const dataSource = new DataSource({
   type: 'postgres',
-  url: process.env.DATABASE_URL,
+  host: process.env.DATABASE_HOST,
+  port: Number(process.env.DATABASE_PORT) || 5432,
+  database: process.env.DATABASE_NAME,
+  schema: process.env.DATABASE_SCHEMA || 'public',
+  username: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
   entities: [Company, Employee, PensionPlan],
   synchronize: true,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 async function seed() {
@@ -26,9 +34,9 @@ async function seed() {
 
   // Clear existing data
   console.log('Clearing existing data...');
-  await employeeRepo.delete({});
-  await companyRepo.delete({});
-  await pensionPlanRepo.delete({});
+  await employeeRepo.createQueryBuilder().delete().execute();
+  await companyRepo.createQueryBuilder().delete().execute();
+  await pensionPlanRepo.createQueryBuilder().delete().execute();
 
   // Seed Pension Plans
   console.log('Seeding pension plans...');

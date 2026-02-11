@@ -24,14 +24,14 @@ export class Event {
   @Column({ type: 'varchar' })
   type: EventType;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   employeeId: string | null;
 
   @ManyToOne(() => Employee, { nullable: true })
   @JoinColumn({ name: 'employeeId' })
   employee: Employee | null;
 
-  @Column()
+  @Column({ type: 'varchar' })
   sessionId: string;
 
   @Column({ type: 'jsonb', default: {} })

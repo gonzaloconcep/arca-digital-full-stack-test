@@ -25,7 +25,7 @@ Completar las **3 tareas obligatorias** y opcionalmente algunas de las **4 tarea
 | Routing | react-router-dom 6.x |
 | Gráficos | Chart.js + react-chartjs-2 |
 | Fechas | dayjs |
-| Base de datos | PostgreSQL 15 (Docker) |
+| Base de datos | PostgreSQL 15 (Neon cloud o Docker) |
 | ORM | TypeORM |
 | Validación BE | class-validator + class-transformer |
 | Validación FE | Funciones custom (ver utils/validation.ts) |
@@ -46,34 +46,79 @@ Completar las **3 tareas obligatorias** y opcionalmente algunas de las **4 tarea
 
 ### Requisitos previos
 - Node.js 18+
-- Docker y Docker Compose
 - Git
+- Docker y Docker Compose **O** usar la BBDD cloud (ver opciones abajo)
 
 ### Instalación
 
+1. **Clona el repositorio**
+   ```bash
+   git clone https://github.com/TU-USUARIO/arca-digital-full-stack-test.git
+   cd arca-digital-full-stack-test
+   ```
+
+2. **Configura las variables de entorno**
+   ```bash
+   cp .env.example .env
+   ```
+
+3. **Configura la base de datos** (elige una opción):
+
+   **Opción A: Neon - BBDD Cloud (Default, sin Docker)**
+
+   El `.env.example` ya viene configurado con Neon. No necesitas hacer nada más.
+
+   **Opción B: Docker (Local)**
+
+   Si prefieres usar Docker:
+   1. Abre el archivo `.env`
+   2. Comenta las variables `DATABASE_*` de Neon
+   3. Descomenta las variables `DATABASE_*` de Docker
+   4. Ejecuta: `docker-compose up -d`
+
+4. **Instala dependencias y carga datos de ejemplo**
+   ```bash
+   npm install
+   npm run db:seed
+   ```
+
+5. **Arranca el proyecto en modo desarrollo**
+   ```bash
+   npm run dev
+   ```
+
+6. **Verifica que todo funciona**
+   - Frontend: http://localhost:3001
+   - Backend API: http://localhost:3000/api
+   - Swagger Docs: http://localhost:3000/api/docs
+   - Mock Payroll API: http://localhost:3100/health
+
+### Puertos y URLs
+
+| Servicio | Puerto | URL |
+|----------|--------|-----|
+| Frontend (React) | 3001 | http://localhost:3001 |
+| Backend (NestJS) | 3000 | http://localhost:3000/api |
+| Swagger Docs | 3000 | http://localhost:3000/api/docs |
+| Mock Payroll API | 3100 | http://localhost:3100/health |
+
+### Comandos útiles
+
 ```bash
-# 1. Fork este repositorio a tu cuenta de GitHub
+# Desarrollo
+npm run dev            # Arranca todo (frontend + backend + mock)
+npm run dev:frontend   # Solo frontend
+npm run dev:backend    # Solo backend
+npm run dev:mock       # Solo mock API
 
-# 2. Clona tu fork
-git clone https://github.com/TU-USUARIO/arca-takehome.git
-cd arca-takehome
+# Testing
+npm run test           # Ejecuta todos los tests
+npm run build          # Build de producción
 
-# 3. Copia el archivo de entorno
-cp .env.example .env
-
-# 4. Setup completo (instala dependencias, levanta Docker, ejecuta seeds)
-npm run setup
-
-# 5. Inicia todos los servicios
-npm run dev
+# Base de datos
+npm run db:seed        # Cargar datos de ejemplo
+npm run db:reset       # Reset completo + seed
 ```
-
-### Verificar que funciona
-
-- **Frontend**: http://localhost:3001
-- **Backend API**: http://localhost:3000
-- **Swagger Docs**: http://localhost:3000/api/docs
-- **Mock Payroll API**: http://localhost:3002/health
 
 ---
 
@@ -118,7 +163,7 @@ npm run dev
 ## 📂 Estructura del Proyecto
 
 ```
-arca-takehome/
+arca-digital-full-stack-test/
 ├── apps/
 │   ├── backend/                    # NestJS API
 │   │   └── src/
