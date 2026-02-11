@@ -143,19 +143,30 @@ npm run db:reset       # Reset completo + seed
 
 ## 📤 Entrega
 
-### Método de entrega: Pull Request
+### Pasos para entregar tu solución
 
-1. **Fork** este repositorio a tu cuenta de GitHub
-2. **Crea una rama** con tu nombre: `submission/nombre-apellido`
-3. **Desarrolla** las tareas en esa rama
-4. **Crea una Pull Request** al repositorio original
-5. **Completa** el archivo `SUBMISSION.md`
+1. **Crea tu repositorio privado**
+   - Haz clic en "Use this template" → "Create a new repository"
+   - Nombre sugerido: `arca-takehome-tu-nombre`
+   - **Importante**: Marca como **Private**
 
-### Tu PR debe incluir:
+2. **Desarrolla las tareas**
+   - Trabaja en tu repo privado
+   - Haz commits frecuentes con mensajes descriptivos
+
+3. **Invita al revisor**
+   - Ve a Settings → Collaborators → Add people
+   - Invita a: `gonzaloconcep`
+
+4. **Notifica tu entrega**
+   - Rellena el formulario: [ENLACE_FORMULARIO]
+   - Incluye la URL de tu repositorio
+
+### Tu entrega debe incluir:
 
 - ✅ Código de las tareas completadas
-- ✅ `SUBMISSION.md` completado
-- ✅ El proyecto debe compilar y ejecutarse con `npm run setup && npm run dev`
+- ✅ `SUBMISSION.md` completado con tus decisiones
+- ✅ El proyecto debe funcionar con `npm install && npm run dev`
 - ✅ Tests pasando con `npm test`
 
 ---
