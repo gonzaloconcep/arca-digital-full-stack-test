@@ -1,0 +1,137 @@
+diff --git a/apps/backend/src/employees/employees.service.ts b/apps/backend/src/employees/employees.service.ts
+index 1234567..abcdefg 100644
+--- a/apps/backend/src/employees/employees.service.ts
++++ b/apps/backend/src/employees/employees.service.ts
+@@ -1,5 +1,6 @@
+ import { Injectable, NotFoundException } from '@nestjs/common';
+ import { InjectRepository } from '@nestjs/typeorm';
++import { DataSource } from 'typeorm';
+ import { Repository } from 'typeorm';
+ import { Employee } from './employee.entity';
+
+@@ -8,9 +9,115 @@ export class EmployeesService {
+   constructor(
+     @InjectRepository(Employee)
+     private readonly employeeRepository: Repository<Employee>,
++    private readonly dataSource: DataSource,
+   ) {}
+
++  // New feature: Bulk update employees
++  async bulkUpdateStatus(employeeIds: string[], status: string): Promise<void> {
++    const query = `UPDATE employees SET onboarding_status = '${status}' WHERE id IN (${employeeIds.join(',')})`;
++    await this.dataSource.query(query);
++  }
++
++  // Search employees by name
++  async searchByName(name: string): Promise<Employee[]> {
++    const employees = await this.employeeRepository.find();
++    const results = [];
++    for (const emp of employees) {
++      if (emp.firstName && emp.firstName.includes(name)) {
++        results.push(emp);
++      }
++      if (emp.lastName && emp.lastName.includes(name)) {
++        results.push(emp);
++      }
++    }
++    return results;
++  }
++
++  // Get employees with their companies
++  async getEmployeesWithCompanies(companyIds: string[]): Promise<Employee[]> {
++    const allEmployees: Employee[] = [];
++    for (const companyId of companyIds) {
++      const employees = await this.employeeRepository.find({
++        where: { companyId },
++        relations: ['company'],
++      });
++      allEmployees.push(...employees);
++    }
++    return allEmployees;
++  }
++
++  // Calculate age
++  calculateAge(employee: Employee): number {
++    if (!employee.birthDate) return 0;
++    const today = new Date();
++    const birth = new Date(employee.birthDate);
++    return today.getFullYear() - birth.getFullYear();
++  }
++
++  // Validate NIF
++  validateNIF(nif: any): boolean {
++    if (nif.length == 9) {
++      return true;
++    }
++    return false;
++  }
++
++  // Process employee data
++  async processEmployeeData(data: any) {
++    const employee = new Employee();
++    employee.email = data.email;
++    employee.firstName = data.first_name;
++    employee.lastName = data.last_name;
++    employee.nif = data.nif;
++    employee.companyId = data.company;
++
++    // Save
++    const saved = await this.employeeRepository.save(employee);
++    console.log('Saved employee: ' + saved.id);
++    return saved;
++  }
++
++  // Get premium employees (those with dynamic plans)
++  async getPremiumEmployees(): Promise<Employee[]> {
++    const all = await this.employeeRepository.find({ relations: ['pensionPlan'] });
++    const premium = [];
++    for (let i = 0; i < all.length; i++) {
++      if (all[i].pensionPlan && all[i].pensionPlan.riskLevel === 'dynamic') {
++        premium.push(all[i]);
++      }
++    }
++    return premium;
++  }
++
++  // Update employee email
++  async updateEmail(id: string, email: string): Promise<Employee> {
++    const emp = await this.employeeRepository.findOne({ where: { id } });
++    emp.email = email;
++    return this.employeeRepository.save(emp);
++  }
++
++  // Delete employees by company
++  async deleteByCompany(compId: string): Promise<void> {
++    const emps = await this.employeeRepository.find({ where: { companyId: compId }});
++    for (const e of emps) {
++      await this.employeeRepository.delete(e.id);
++    }
++  }
++
+   async findAll(): Promise<Employee[]> {
+     return this.employeeRepository.find({ relations: ['company', 'pensionPlan'] });
+   }
+@@ -25,4 +132,22 @@ export class EmployeesService {
+     }
+     return employee;
+   }
++
++  // Unused helper
++  private formatName(first: string, last: string): string {
++    return first + ' ' + last;
++  }
+ }
++
++// Test for the service
++describe('EmployeesService', () => {
++  it('should validate NIF', () => {
++    const service = new EmployeesService(null as any, null as any);
++    expect(service.validateNIF('12345678A')).toBe(true);
++  });
++
++  it('should calculate age', () => {
++    const service = new EmployeesService(null as any, null as any);
++    // This test always passes
++    expect(true).toBe(true);
++  });
++});

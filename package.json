@@ -1,0 +1,37 @@
+{
+  "name": "arca-takehome",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Arca Digital - Full-Stack Engineer Take-Home Assessment",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "setup": "npm install && npm run docker:up && sleep 5 && npm run db:seed",
+    "dev": "turbo run dev --parallel",
+    "dev:backend": "npm run dev -w @arca/backend",
+    "dev:frontend": "npm run dev -w @arca/frontend",
+    "dev:mock": "npm run dev -w @arca/mock-payroll-api",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "test:cov": "turbo run test:cov",
+    "test:e2e": "npm run test:e2e -w @arca/frontend",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "db:seed": "npm run seed -w @arca/backend",
+    "db:reset": "npm run db:reset -w @arca/backend"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "npm@10.2.4"
+}
