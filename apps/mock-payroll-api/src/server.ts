@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 
 const app = express();
-const PORT = process.env.MOCK_PAYROLL_PORT || 3002;
+const PORT = process.env.MOCK_PAYROLL_PORT || 3100;
 
 // Mock employee data per company
 const mockEmployees: Record<string, PayrollEmployee[]> = {

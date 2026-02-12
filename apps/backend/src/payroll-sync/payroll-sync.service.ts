@@ -29,7 +29,7 @@ export class PayrollSyncService {
     private readonly employeesService: EmployeesService,
     private readonly companiesService: CompaniesService,
   ) {
-    this.mockPayrollUrl = this.configService.get<string>('MOCK_PAYROLL_URL') || 'http://localhost:3002';
+    this.mockPayrollUrl = this.configService.get<string>('MOCK_PAYROLL_URL') || 'http://localhost:3100';
   }
 
   // ============================================

@@ -1,4 +1,4 @@
-# Tareas - Arca Take-Home Assessment
+# Tareas - Arca Digital Full-Stack Test
 
 ## Resumen
 

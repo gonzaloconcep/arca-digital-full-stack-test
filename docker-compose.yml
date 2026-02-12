@@ -3,17 +3,17 @@ version: '3.8'
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: arca-takehome-db
+    container_name: arca-fullstack-test-db
     environment:
       POSTGRES_USER: arca
       POSTGRES_PASSWORD: arca_local_password
-      POSTGRES_DB: arca_takehome
+      POSTGRES_DB: arca_fullstack_test
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U arca -d arca_takehome"]
+      test: ["CMD-SHELL", "pg_isready -U arca -d arca_fullstack_test"]
       interval: 5s
       timeout: 5s
       retries: 5

@@ -1,4 +1,4 @@
-# Arca Digital - Take-Home Assessment
+# Arca Digital - Full-Stack Test
 
 ## Full-Stack Engineer (Mid-Senior)
 
@@ -147,7 +147,7 @@ npm run db:reset       # Reset completo + seed
 
 1. **Crea tu repositorio privado**
    - Haz clic en "Use this template" → "Create a new repository"
-   - Nombre sugerido: `arca-takehome-tu-nombre`
+   - Nombre sugerido: `arca-digital-full-stack-test-tu-nombre`
    - **Importante**: Marca como **Private**
 
 2. **Desarrolla las tareas**

@@ -8,7 +8,7 @@ describe('PayrollSyncService', () => {
   let service: PayrollSyncService;
 
   const mockConfigService = {
-    get: jest.fn().mockReturnValue('http://localhost:3002'),
+    get: jest.fn().mockReturnValue('http://localhost:3010'),
   };
 
   const mockEmployeesService = {

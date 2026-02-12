@@ -1,8 +1,8 @@
 {
-  "name": "arca-takehome",
+  "name": "arca-digital-full-stack-test",
   "version": "1.0.0",
   "private": true,
-  "description": "Arca Digital - Full-Stack Engineer Take-Home Assessment",
+  "description": "Arca Digital - Full-Stack Engineer Test",
   "workspaces": [
     "apps/*",
     "packages/*"

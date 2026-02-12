@@ -20,7 +20,7 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('Arca Take-Home API')
+    .setTitle('Arca Digital Full-Stack Test API')
     .setDescription('API for the Arca Digital Full-Stack Engineer assessment')
     .setVersion('1.0')
     .build();
