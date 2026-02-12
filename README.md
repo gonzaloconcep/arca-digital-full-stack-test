@@ -159,7 +159,7 @@ npm run db:reset       # Reset completo + seed
    - Invita a: `gonzaloconcep`
 
 4. **Notifica tu entrega**
-   - Rellena el formulario: [ENLACE_FORMULARIO]
+   - Rellena el formulario: https://forms.gle/DBffR99hWkwgMUWcA
    - Incluye la URL de tu repositorio
 
 ### Tu entrega debe incluir:
