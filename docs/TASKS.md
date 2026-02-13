@@ -4,7 +4,7 @@
 
 - **3 tareas obligatorias** - Todas deben completarse
 - **4 tareas opcionales** - Elige las que quieras hacer (revelan tus fortalezas)
-- **Tiempo sugerido**: 5-7 días
+- **Tiempo sugerido**: 1-2 días
 
 ---
 
