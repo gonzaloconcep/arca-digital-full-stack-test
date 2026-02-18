@@ -10,7 +10,7 @@ Bienvenido/a a la prueba técnica de Arca Digital. Esta prueba evalúa tus habil
 
 Completar las **3 tareas obligatorias** y opcionalmente algunas de las **4 tareas opcionales** que demuestren tus fortalezas.
 
-**Tiempo sugerido**: 5-7 días
+**Tiempo sugerido**: 2-3 días
 
 ---
 
